@@ -1,14 +1,13 @@
 import {Button, Card, CardContent, Typography} from '@mui/material';
 import { Box } from '@mui/system'
 import React, { useState } from 'react';
-import App from '../App';
+
 const questions = [
   {
     QnId: 1,
     Qs: "Który mig reprezentuje MASŁO",
     ImageName: "mas1.png",
-    ImageName2: "mas2.png",
-    ImageName3: "mas3.png",
+ 
     GifName: "maslogif.mp4",
     GifName2: "masloogif.mp4",
     Option1: "Mig po lewej",
@@ -19,8 +18,7 @@ const questions = [
     QnId: 2,
     Qs: "Który mig reprezentuje BROKUŁ",
     ImageName: "bro1.png",
-    ImageName2: "bro2.png",
-    ImageName3: "bro3.png",
+
     GifName: "brok.mp4",
     GifName2: "61539.mp4",
     Option1: "Mig po lewej",
@@ -31,8 +29,7 @@ const questions = [
     QnId: 3,
     Qs: "Który mig reprezentuje GRZYB",
     ImageName: "grzy1.png",
-    ImageName2: "grzy2.png",
-    ImageName3: "grzy3.png",
+
     GifName: "grzyb.mp4",
     GifName2: "grzy.mp4",
     Option1: "Mig po lewej",
@@ -43,8 +40,7 @@ const questions = [
     QnId: 4,
     Qs: "Który mig reprezentuje MARCHEWKA",
     ImageName: "march1.png",
-    ImageName2: "march2.png",
-    ImageName3: "march3.png",
+ 
     GifName: "march.mp4",
     GifName2: "march2.mp4",
     Option1: "Mig po lewej",
@@ -55,8 +51,7 @@ const questions = [
     QnId: 5,
     Qs: "Który mig reprezentuje ANANAS",
     ImageName: "anan1.png",
-    ImageName2: "anan2.png",
-    ImageName3: "anan3.png",
+
     GifName: "anan.mp4",
     GifName2: "anan2.mp4",
     Option1: "Mig po lewej",
@@ -67,8 +62,7 @@ const questions = [
     QnId: 6,
     Qs: "Który mig reprezentuje GRUSZKA",
     ImageName: "gru1.png",
-    ImageName2: "gru2.png",
-    ImageName3: "gru3.png",
+
     GifName: "gru.mp4",
     GifName2: "gru2.mp4",
     Option1: "Mig po lewej",
@@ -79,8 +73,7 @@ const questions = [
     QnId: 7,
     Qs: "Który mig reprezentuje JAGODA",
     ImageName: "jag1.png",
-    ImageName2: "jag2.png",
-    ImageName3: "jag3.png",
+
     GifName: "jag.mp4",
     GifName2: "jag2.mp4",
     Option1: "Mig po lewej",
@@ -91,8 +84,7 @@ const questions = [
     QnId: 8,
     Qs: "Który mig reprezentuje WIŚNIA",
     ImageName: "wis1.png",
-    ImageName2: "wis2.png",
-    ImageName3: "wis3.png",
+
     GifName: "wis.mp4",
     GifName2: "ba.mp4",
     Option1: "Mig po lewej",
@@ -103,8 +95,7 @@ const questions = [
     QnId: 9,
     Qs: "Który mig reprezentuje ORZECH LASKOWY",
     ImageName: "orze1.png",
-    ImageName2: "orze2.png",
-    ImageName3: "orze3.png",
+
     GifName: "orze.mp4",
     GifName2: "orze2.mp4",
     Option1: "Mig po lewej",
@@ -115,8 +106,6 @@ const questions = [
     QnId: 10,
     Qs: "Który mig reprezentuje BUŁKA",
     ImageName: "bul1.png",
-    ImageName2: "bul2.png",
-    ImageName3: "bul3.png",
     GifName: "bul.mp4",
     Option1: "Mig po lewej",
     Option2: "Mig po prawej",
@@ -125,12 +114,13 @@ const questions = [
 ];
 
 
-  export default function Quiz() {
+  export default function Quiz({onProgressChange}) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [showScore, setShowScore] = useState(false);
-    const [progress,setProgress] =useState(false);
-
+    const [progress,setProgres]= useState(0);
+    const [incorrectAnswers, setIncorrectAnswers] = useState([]);
+   
     const resetButtonColors = () => {
       const buttons = document.querySelectorAll(".answer-button");
       buttons.forEach((button) => {
@@ -144,10 +134,14 @@ const questions = [
       const isCorrect = selectedOption === questions[currentQuestion].Answer;
       if (isCorrect) {
         setScore(score + 1);
-        setProgress(progress+1);
+        if (progress < questions.length - 1) {
+          setProgres(progress+1);
+          onProgressChange((progress+1)/questions.length*100);
+        }
         event.target.style.backgroundColor = "green";
       } else {
         event.target.style.backgroundColor = "red";
+        setIncorrectAnswers([...incorrectAnswers, currentQuestion]);
       }
 
       const nextQuestion = currentQuestion + 1;
@@ -157,7 +151,17 @@ const questions = [
         setShowScore(true);
       }
     };
-  
+
+    const handleRetake = () => {
+      setCurrentQuestion(incorrectAnswers[0]);
+      setScore(0);
+      setProgres(0);
+      setShowScore(false);
+      setIncorrectAnswers(incorrectAnswers.slice(1));
+    };
+    
+    
+    
     const renderQuestion = () => {
       const question = questions[currentQuestion];
 
@@ -166,9 +170,7 @@ const questions = [
 <Typography variant='h6' style={{display: "flex", justifyContent: "center", backgroundColor: '#385a63', padding: '10px', borderRadius: '10px', border: '2px solid #fff', fontFamily: 'Arial', color: "#fff", fontWeight: "bold", fontSize: "1.2rem" }}>{question.Qs}</Typography>
 <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
   <div style={{display: "flex" ,borderRadius: '10px', border: '2px solid #fff'}}>
-    <img src={questions[currentQuestion].ImageName} style={{  width: '120px', height: '70px', marginRight: '62px' }} />
-    <img src={questions[currentQuestion].ImageName2} style={{  width: '120px', height: '70px', marginRight: '62px' }} />
-    <img src={questions[currentQuestion].ImageName3} style={{  width: '120px', height: '70px' }} />
+    <img src={questions[currentQuestion].ImageName} style={{  width: '170px', height: '120px' }} />
   </div>
   <div style={{display: "flex"}}>
     <video style={{display: "inline-block", marginRight: "8px"}} src={questions[currentQuestion].GifName} autoPlay loop controls></video> 
@@ -240,10 +242,11 @@ const questions = [
               textTransform: 'uppercase',
               letterSpacing: '2px'
             }}>
-              Twój wynik to  {score} na {questions.length}
+              Twój wynik to  {score} na {questions.length} 
             </h1>
 
           </Typography>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
           <Button
             style={{
               display: "flex",
@@ -263,6 +266,27 @@ const questions = [
           >
             Restart
           </Button>
+          <Button
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "60px",
+            width: "100px",
+            borderRadius: "8px",
+            backgroundColor: "#fff",
+            color: "#385a63",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+            cursor: "pointer",
+            border: '2px solid #fff',
+            marginLeft: "20px",
+          }}
+          onClick={handleRetake}
+        >
+          Powtórz 
+        </Button>
+        </div>
         </div>
       );
           }
@@ -270,7 +294,8 @@ const questions = [
     return (
       <Card sx={{ maxWidth: 640, backgroundColor: '#385a63', borderRadius: '10px', border: '2px solid #fff', mx: 'auto', mt: 5 }}>
         <CardContent>
-          {showScore ? renderResult() : renderQuestion()}
+        {showScore ? renderResult() : renderQuestion()}
+
           <Typography variant="subtitle1" sx={{ mt: 2 }}>
 
           </Typography>
@@ -279,6 +304,6 @@ const questions = [
     );
   }
   
-  
+
 
   
