@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 import './App.css';
+import './ProgressBar.css';
 import React, { useState } from 'react';
 import Quizabc from './components/Quizabc';
 import Quiz from './components/Quiz';
@@ -371,21 +371,22 @@ function App() {
               letterSpacing: '4px'
             }}>PJM APP</h1>
             <Link to="/" style={{ position: 'absolute', right: '40px' }}>
-              <button style={{ backgroundColor: '#385a63', color: '#e2e9ea', borderRadius: '5px', padding: '20px', margin: '20px' }}>
+              <button className="animated-button">
                 <img src="home.png" style={{ height: '40px', marginRight: '10px' }} />
               </button>
             </Link>
+
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', width: '80%', margin: '0 auto', backgroundColor: '#e6e6e6', borderRadius: '10px', height: '20px' }}>
             <div style={{ position: 'relative', width: `${currentProgress1}%`, backgroundColor: '#0f99fd', borderRadius: '10px 0 0 10px', height: '100%' }}>
-              <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff' }}>{currentProgress1}%</span>
+              <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff' }}></span>
             </div>
             <div style={{ position: 'relative', width: `${currentProgress}%`, backgroundColor: '#f9a229', borderRadius: '0', height: '100%' }}>
-              <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff' }}>{currentProgress}%</span>
+              <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff' }}></span>
             </div>
             <div style={{ position: 'relative', width: `${currentProgress2}%`, backgroundColor: '#d44a2d', borderRadius: '0 10px 10px 0', height: '100%' }}>
-              <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff' }}>{currentProgress2}%</span>
+              <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff' }}></span>
             </div>
           </div>
 
@@ -407,57 +408,69 @@ function App() {
 
 function Home() {
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handlePodstawowyClick = () => {
-    setIsLoading(true);
-
-
-
-
-  };
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: '2px solid #fff', overflow: 'hidden', backgroundColor: '#e2e9ea', maxWidth: '800px', margin: '50px auto', height: '400px' }}>
-      <h2 style={{ margin: '0', color: '#2b3232', fontWeight: 'bold', fontSize: '48px', textTransform: 'uppercase', letterSpacing: '4px' }}>Wybierz Poziom</h2>
-      <div style={{ display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
-        <Link to="/quiz1-page">
-          <button onClick={handlePodstawowyClick} style={{ backgroundColor: '#0f99fd', color: '#e2e9ea', fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', borderRadius: '10px', padding: '20px', margin: '20px' }}>
-            {isLoading ? 'Loading...' : ''}
-            <h2 style={{ color: '#e2e9ea', fontWeight: 'bold', margin: '0 auto' }}>Podstawowy</h2>
-          </button>
-        </Link>
+      <h2 style={{ margin: '0', color: '#2b3232', fontWeight: 'bold', fontSize: '48px', textTransform: 'uppercase', letterSpacing: '4px' }}>
+        <span className="wave-text">
+          <span className="wave-letter">W</span>
+          <span className="wave-letter">Y</span>
+          <span className="wave-letter">b</span>
+          <span className="wave-letter">i</span>
+          <span className="wave-letter">e</span>
+          <span className="wave-letter">r</span>
+          <span className="wave-letter">z</span>
+          <span className="wave-letter">&nbsp;</span>
+          <span className="wave-letter">p</span>
+          <span className="wave-letter">o</span>
+          <span className="wave-letter">z</span>
+          <span className="wave-letter">i</span>
+          <span className="wave-letter">o</span>
+          <span className="wave-letter">m</span>
+        </span>
+      </h2>
+      <div>
 
-        <Link to="/quiz2-page">
-          <button
-            style={{
-              backgroundColor: "#f9a229",
-              color: "#e2e9ea",
-              fontSize: "12px",
-              fontWeight: "bold",
-              textTransform: "uppercase",
-              letterSpacing: "2px",
-              borderRadius: "10px",
-              padding: "20px",
-              margin: "20px",
-            }}
-          >
-            <h2 style={{ color: "#e2e9ea", fontWeight: "bold", margin: "0 auto" }}>
-              Roszerzony
-            </h2>
-          </button>
-        </Link>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
+      <Link to="/quiz1-page">
+        <button className="button">
+          <h2 style={{ color: '#e2e9ea', fontWeight: 'bold', margin: '0 auto' }}>Podstawowy</h2>
+        </button>
+      </Link>
 
-        <Link to="/quiz3-page">
-          <button style={{ backgroundColor: '#d44a2d', color: '#e2e9ea', fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', borderRadius: '10px', padding: '20px', margin: '20px' }}>
-            <h2 style={{ color: '#e2e9ea', fontWeight: 'bold', margin: '0 auto' }}>Zaawansowany</h2>
-          </button>
-        </Link>
+      <Link to="/quiz2-page">
+        <button className="button1">
+          <h2 style={{ color: "#e2e9ea", fontWeight: "bold", margin: "0 auto" }}>
+            Rozszerzony
+          </h2>
+        </button>
+      </Link>
+
+      <Link to="/quiz3-page">
+        <button className="button2">
+          <h2 style={{ color: '#e2e9ea', fontWeight: 'bold', margin: '0 auto' }}>Zaawansowany</h2>
+        </button>
+      </Link>
+    </div>
+
+    <button
+      className="button4"
+      onClick={() => window.location.reload()}
+      style={{ marginTop: '50px',width:'720px' }}
+    >
+      <h2 style={{ color: '#e2e9ea', fontWeight: 'bold', margin: '0 auto' }}>
+        Zresetuj progress
+      </h2>
+    </button>
+  </div>
+
         <footer style={{ backgroundColor: '#385a63', color: '#35474b', textAlign: 'center', padding: '10px', position: 'absolute', bottom: 0, left: 0, width: '100%' }}>
           &copy; Bartosz Ciućka 2023 PJM App. All rights reserved.
         </footer>
       </div>
     </div>
   );
+
 }
 
 

@@ -6,6 +6,123 @@
   height: 40vmin;
   pointer-events: none;
 }
+.wave-text {
+  display: inline-block;
+  position: relative;
+}
+
+.wave-letter {
+  display: inline-block;
+  animation: waveAnimation 2.5s ease-in-out infinite;
+}
+
+@keyframes waveAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animated-button {
+  background-color: #385a63;
+  color: #e2e9ea;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.animated-button:hover {
+  transform: scale(0.9);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.button {
+  background-color: #0f99fd;
+  color: #e2e9ea;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.button1 {
+  background-color: #f9a229;
+  color: #e2e9ea;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button1:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.button2 {
+  background-color: #d44a2d;
+  color: #e2e9ea;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button2:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.button4 {
+  background-color: #7fc7cd;
+  color: #290438;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button4:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.animated-button-restart {
+  animation: restartAnimation 1s;
+}
+
+@keyframes restartAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

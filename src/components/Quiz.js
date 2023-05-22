@@ -1,4 +1,4 @@
-import {Button, Card, CardContent, Typography} from '@mui/material';
+import {Button, Card, CardContent, Typography,TextField,Tooltip} from '@mui/material';
 import { Box } from '@mui/system'
 import React, { useState } from 'react';
 
@@ -120,7 +120,7 @@ const questions = [
     const [showScore, setShowScore] = useState(false);
     const [progress,setProgres]= useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = useState([]);
-   
+     const [retakeMode, setRetakeMode] = useState(false);
     const resetButtonColors = () => {
       const buttons = document.querySelectorAll(".answer-button");
       buttons.forEach((button) => {
@@ -128,21 +128,23 @@ const questions = [
       });
     };
     
-    
-    const handleAnswerOptionClick = (selectedOption, event) => {
-      resetButtonColors();
-      const isCorrect = selectedOption === questions[currentQuestion].Answer;
-      if (isCorrect) {
-        setScore(score + 1);
-        if (progress < questions.length - 1) {
-          setProgres(progress+1);
-          onProgressChange((progress+1)/questions.length*100);
-        }
-        event.target.style.backgroundColor = "green";
-      } else {
-        event.target.style.backgroundColor = "red";
-        setIncorrectAnswers([...incorrectAnswers, currentQuestion]);
+    //const shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+//const questions = shuffledQuestions[currentQuestion];
+   const handleAnswerOptionClick = (selectedOption, event) => {
+    resetButtonColors();
+    const isCorrect = selectedOption === questions[currentQuestion].Answer;
+    if (  isCorrect) {
+      setScore(score + 1);
+      if (progress < questions.length - 1) {
+        setProgres(progress + 1);
+        onProgressChange((progress + 1) / questions.length * 100);
       }
+      event.target.style.backgroundColor = "green";
+    } else {
+      event.target.style.backgroundColor = "red";
+      setIncorrectAnswers([...incorrectAnswers, currentQuestion]);
+    }
+
 
       const nextQuestion = currentQuestion + 1;
       if (nextQuestion < questions.length) {
@@ -153,34 +155,54 @@ const questions = [
     };
 
     const handleRetake = () => {
-      setCurrentQuestion(incorrectAnswers[0]);
+      resetButtonColors(); // Reset button colors
+      const incorrectQuestionIndex = incorrectAnswers[0];
+      setCurrentQuestion(incorrectQuestionIndex);
+      setScore(0);
+      setProgres(incorrectQuestionIndex);
+      setShowScore(false);
+      setIncorrectAnswers(incorrectAnswers.slice(1));
+      setRetakeMode(true);
+    };
+    
+    const restartQuiz = () => {
+      setCurrentQuestion(0);
       setScore(0);
       setProgres(0);
       setShowScore(false);
-      setIncorrectAnswers(incorrectAnswers.slice(1));
+      onProgressChange(0);
+      setIncorrectAnswers([]);
+      setRetakeMode(false);
     };
-    
-    
     
     const renderQuestion = () => {
       const question = questions[currentQuestion];
 
       return (
         <div>
-<Typography variant='h6' style={{display: "flex", justifyContent: "center", backgroundColor: '#385a63', padding: '10px', borderRadius: '10px', border: '2px solid #fff', fontFamily: 'Arial', color: "#fff", fontWeight: "bold", fontSize: "1.2rem" }}>{question.Qs}</Typography>
-<div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
-  <div style={{display: "flex" ,borderRadius: '10px', border: '2px solid #fff'}}>
-    <img src={questions[currentQuestion].ImageName} style={{  width: '170px', height: '120px' }} />
+<Typography variant='h6' style={{ display: "flex", justifyContent: "center", backgroundColor: '#385a63', padding: '10px', borderRadius: '10px', border: '2px solid #fff', fontFamily: 'Arial', color: "#fff", fontWeight: "bold", fontSize: "1.2rem" }}>{question.Qs}</Typography>
+<div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+  <div style={{ display: "flex", borderRadius: '10px', border: '2px solid #fff', marginTop: '10px' }}>
+    <img src={questions[currentQuestion].ImageName} style={{ width: '170px', height: '120px', marginTop: '10px' }} />
   </div>
-  <div style={{display: "flex"}}>
-    <video style={{display: "inline-block", marginRight: "8px"}} src={questions[currentQuestion].GifName} autoPlay loop controls></video> 
-    <video style={{display: "inline-block", marginLeft: "8px"}} src={questions[currentQuestion].GifName2} autoPlay loop controls></video> 
+  <div style={{ display: 'flex', marginTop: '20px' }}>
+    <div style={{ flex: '1', marginRight: '8px' }}>
+      <video style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} src={questions[currentQuestion].GifName} autoPlay loop controls></video>
+    </div>
+    <div style={{ flex: '1', marginLeft: '8px' }}>
+      <video style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} src={questions[currentQuestion].GifName2} autoPlay loop controls></video>
+    </div>
   </div>
+</div>
+
+<div>
+
+
 </div>
 
     <Box sx={{ display: 'flex', flexDirection: 'column', mt: 2, backgroundColor: '#385a63', borderRadius: '10px', border: '2px solid #fff', justifyContent: 'center', alignItems: 'center' }}>
       <Button
-        className="answer-button"
+       className="answer-button animated-button"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -199,7 +221,7 @@ const questions = [
         {question.Option1}
       </Button>
       <Button
-        className="answer-button"
+       className="answer-button animated-button"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -222,6 +244,16 @@ const questions = [
     };
   
     const renderResult = () => {
+      let videoUrl = "";
+    
+      if (score <= 3 ) {
+        videoUrl = "ss.mp4";
+      } else if (score <= 5 ) {
+        videoUrl = "tak.mp4";
+      } else if (score <= 7) {
+        videoUrl = "dobra.mp4";
+      }
+    
       return (
         <div style={{
           display: "flex",
@@ -231,73 +263,113 @@ const questions = [
           backgroundColor: '#385a63',
           padding: '10px',
           borderRadius: '10px',
-          border: '2px solid #fff'
+          border: '2px solid #fff',
+          position: 'relative'
         }}>
-          <Typography variant='h6'>
-            <h1 style={{
-              margin: '0',
-              color: '#e2e9ea',
-              fontWeight: 'bold',
-              fontSize: '22px',
-              textTransform: 'uppercase',
-              letterSpacing: '2px'
-            }}>
-              Twój wynik to  {score} na {questions.length} 
-            </h1>
-
-          </Typography>
+          {!retakeMode && (
+            <Typography variant='h6'>
+              <h1 style={{
+                margin: '0',
+                color: '#e2e9ea',
+                fontWeight: 'bold',
+                fontSize: '22px',
+                textTransform: 'uppercase',
+                letterSpacing: '2px'
+              }}>
+                Twój wynik to {score} na {questions.length}
+              </h1>
+            </Typography>
+          )}
           <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Button
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "60px",
-              width: "100px",
-              borderRadius: "8px",
-              backgroundColor: "#fff",
-              color: "#385a63",
-              fontWeight: "bold",
-              fontSize: "1.2rem",
-              cursor: "pointer",
-              border: '2px solid #fff'
-            }}
-            onClick={() => window.location.reload()}
-          >
-            Restart
-          </Button>
-          <Button
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "60px",
-            width: "100px",
-            borderRadius: "8px",
-            backgroundColor: "#fff",
-            color: "#385a63",
-            fontWeight: "bold",
-            fontSize: "1.2rem",
-            cursor: "pointer",
-            border: '2px solid #fff',
-            marginLeft: "20px",
-          }}
-          onClick={handleRetake}
-        >
-          Powtórz 
-        </Button>
-        </div>
+            {(
+              <Button
+                className="animated-button"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "60px",
+                  width: "100px",
+                  borderRadius: "8px",
+                  backgroundColor: "#fff",
+                  color: "#385a63",
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  cursor: "pointer",
+                  border: '2px solid #fff'
+                }}
+                onClick={restartQuiz}
+              >
+                Restart
+              </Button>
+            )}
+            <Button
+              className="animated-button"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "60px",
+                width: "110px",
+                borderRadius: "8px",
+                backgroundColor: "#fff",
+                color: "#385a63",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                cursor: "pointer",
+                border: '2px solid #fff',
+                marginLeft: "20px",
+              }}
+              onClick={handleRetake}
+            >
+              Powtórz
+            </Button>
+          </div>
+          {!retakeMode && videoUrl && (
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              paddingBottom: '56.25%', /* 16:9 aspect ratio */
+              overflow: 'hidden',
+              borderRadius: '10px',
+              marginTop: '20px'
+            }}>
+              <video
+                src={videoUrl}
+                autoPlay
+                loop
+                controls
+                style={{
+                  position: 'absolute',
+                  top: '0',
+                  left: '0',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: '10px'
+                }}
+              />
+            </div>
+          )}
         </div>
       );
-          }
+    };
+    
+    
+    
+      
+              
+            
+          
+  
+  
   
     return (
       <Card sx={{ maxWidth: 640, backgroundColor: '#385a63', borderRadius: '10px', border: '2px solid #fff', mx: 'auto', mt: 5 }}>
         <CardContent>
-        {showScore ? renderResult() : renderQuestion()}
-
+          {showScore ? renderResult() : renderQuestion()}
           <Typography variant="subtitle1" sx={{ mt: 2 }}>
-
+  
           </Typography>
         </CardContent>
       </Card>
