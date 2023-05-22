@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const questionsabc = [
   {
     QnId: 1,
-    Qs: "Który mig reprezentuje litere A",
+    Qs: "KTÓRY MIG REPREZENTUJE LITERE A?",
     ImageName: "A1.png",
     ImageName2: "A2.png",
     Option1: "Mig po lewej",
@@ -13,7 +13,7 @@ const questionsabc = [
   },
   {
     QnId: 2,
-    Qs: "Który mig reprezentuje litere C",
+    Qs: "KTÓRY MIG REPREZENTUJE LITERE C?",
     ImageName: "C1.png",
     ImageName2: "C2.png",
     Option1: "Mig po lewej",
@@ -22,7 +22,7 @@ const questionsabc = [
   },
   {
     QnId: 3,
-    Qs: "Który mig reprezentuje litere F",
+    Qs: "KTÓRY MIG REPREZENTUJE LITERE F?",
     ImageName: "F1.png",
     ImageName2: "F2.png",
     Option1: "Mig po lewej",
@@ -31,7 +31,7 @@ const questionsabc = [
   },
   {
     QnId: 4,
-    Qs: "Który mig reprezentuje litere G",
+    Qs: "KTÓRY MIG REPREZENTUJE LITERE G?",
     ImageName: "G1.png",
     ImageName2: "G2.png",
     Option1: "Mig po lewej",
@@ -40,7 +40,7 @@ const questionsabc = [
   },
   {
     QnId: 5,
-      Qs: "Który mig reprezentuje litere L",
+      Qs: "KTÓRY MIG REPREZENTUJE LITERE L?",
     ImageName: "L1.png",
     ImageName2: "L2.png",
     Option1: "Mig po lewej",

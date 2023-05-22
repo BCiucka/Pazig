@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 const questionsza = [
   {
     QnId: 1,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "cz.mp4",
     ToolTip:"Przywitanie na C",
     Input: "",
@@ -13,7 +13,7 @@ const questionsza = [
   },
   {
     QnId: 2,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "pa.mp4",
     ToolTip:"Pożegnanie na P",
     Input: "",
@@ -21,7 +21,7 @@ const questionsza = [
   },
   {
     QnId: 3,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "sz.mp4",
     ToolTip:"Bardzo dokładnie czyścić używając do tego siły. ",
     Input: "",
@@ -29,7 +29,7 @@ const questionsza = [
   },
   {
     QnId: 4,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "wm.mp4",
     ToolTip:"Przerważnie mówi się to kiedy ktos na urodziny W,N",
     Input: "",
@@ -37,7 +37,7 @@ const questionsza = [
   },
   {
     QnId: 5,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "aa.mp4",
     ToolTip:"Substancja, która może zniszczyć lub zahamować wydzielanie bakterii i innych mikroorganizmów w ciele",
     Input: "",
@@ -45,7 +45,7 @@ const questionsza = [
   },
   {
     QnId: 6,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "bb.mp4",
     ToolTip:"Przemieszczać się bardzo szybko na nogach",
     Input: "",
@@ -53,7 +53,7 @@ const questionsza = [
   },
   {
     QnId: 7,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "an.mp4",
     ToolTip:"Chorobliwy brak łaknienia ",
     Input: "",
@@ -61,7 +61,7 @@ const questionsza = [
   },
   {
     QnId: 8,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "dd.mp4",
     ToolTip:"Wąska deska z czterema rolkami, na której można jeździć i wykonywać ewolucje ",
     Input: "",
@@ -69,7 +69,7 @@ const questionsza = [
   },
   {
     QnId: 9,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "gg.mp4",
     ToolTip:"Ćwiczenia fizyczne, wykonywane np. na drążku w celu rozwijania siły, muskulatury oraz kształtowaniu sylwetki.na G",
     Input: "",
@@ -77,7 +77,7 @@ const questionsza = [
   },
   {
     QnId: 10,
-    Qs: "Wpisz co reprezentuje dany MIG",
+    Qs: "WPISZ CO REPREZENTUJE DANY MIG",
     GifName: "mm.mp4",
     ToolTip:"Zamaczać/ wystawiać na działanie wody. ",
     Input: "",

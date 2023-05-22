@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 const questions = [
   {
     QnId: 1,
-    Qs: "Który mig reprezentuje MASŁO",
+    Qs: "KTÓRY MIG REPREZENTUJE MASŁO?",
     ImageName: "mas1.png",
  
     GifName: "maslogif.mp4",
@@ -16,7 +16,7 @@ const questions = [
   },
   {
     QnId: 2,
-    Qs: "Który mig reprezentuje BROKUŁ",
+    Qs: "KTÓRY MIG REPREZENTUJE BROKUŁ?",
     ImageName: "bro1.png",
 
     GifName: "brok.mp4",
@@ -27,7 +27,7 @@ const questions = [
   },
   {
     QnId: 3,
-    Qs: "Który mig reprezentuje GRZYB",
+    Qs: "KTÓRY MIG REPREZENTUJE GRZYB?",
     ImageName: "grzy1.png",
 
     GifName: "grzyb.mp4",
@@ -38,7 +38,7 @@ const questions = [
   },
   {
     QnId: 4,
-    Qs: "Który mig reprezentuje MARCHEWKA",
+    Qs: "KTÓRY MIG REPREZENTUJE MARCHEWKA?",
     ImageName: "march1.png",
  
     GifName: "march.mp4",
@@ -49,7 +49,7 @@ const questions = [
   },
   {
     QnId: 5,
-    Qs: "Który mig reprezentuje ANANAS",
+    Qs: "KTÓRY MIG REPREZENTUJE ANANAS?",
     ImageName: "anan1.png",
 
     GifName: "anan.mp4",
@@ -60,7 +60,7 @@ const questions = [
   },
   {
     QnId: 6,
-    Qs: "Który mig reprezentuje GRUSZKA",
+    Qs: "KTÓRY MIG REPREZENTUJE GRUSZKA?",
     ImageName: "gru1.png",
 
     GifName: "gru.mp4",
@@ -71,7 +71,7 @@ const questions = [
   },
   {
     QnId: 7,
-    Qs: "Który mig reprezentuje JAGODA",
+    Qs: "KTÓRY MIG REPREZENTUJE JAGODA?",
     ImageName: "jag1.png",
 
     GifName: "jag.mp4",
@@ -82,7 +82,7 @@ const questions = [
   },
   {
     QnId: 8,
-    Qs: "Który mig reprezentuje WIŚNIA",
+    Qs: "KTÓRY MIG REPREZENTUJE WIŚNIA?",
     ImageName: "wis1.png",
 
     GifName: "wis.mp4",
@@ -93,7 +93,7 @@ const questions = [
   },
   {
     QnId: 9,
-    Qs: "Który mig reprezentuje ORZECH LASKOWY",
+    Qs: "KTÓRY MIG REPREZENTUJE ORZECH LASKOWY?",
     ImageName: "orze1.png",
 
     GifName: "orze.mp4",
@@ -104,7 +104,7 @@ const questions = [
   },
   {
     QnId: 10,
-    Qs: "Który mig reprezentuje BUŁKA",
+    Qs: "KTÓRY MIG REPREZENTUJE BUŁKA?",
     ImageName: "bul1.png",
     GifName: "bul.mp4",
     Option1: "Mig po lewej",
