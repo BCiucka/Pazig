@@ -230,27 +230,29 @@ export default function Quizabc({onProgressChange1}) {
               Restart
             </Button>
           )}
-          <Button
-            className="animated-button"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "60px",
-              width: "110px",
-              borderRadius: "8px",
-              backgroundColor: "#fff",
-              color: "#385a63",
-              fontWeight: "bold",
-              fontSize: "1.2rem",
-              cursor: "pointer",
-              border: '2px solid #fff',
-              marginLeft: "20px",
-            }}
-            onClick={handleRetake}
-          >
-            Powtórz
-          </Button>
+          {score !== 5 && (
+            <Button
+              className="animated-button"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "60px",
+                width: "110px",
+                borderRadius: "8px",
+                backgroundColor: "#fff",
+                color: "#385a63",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                cursor: "pointer",
+                border: '2px solid #fff',
+                marginLeft: "20px",
+              }}
+              onClick={handleRetake}
+            >
+              Powtórz
+            </Button>
+          )}
         </div>
         {!retakeMode && videoUrl && (
           <div style={{
@@ -280,11 +282,7 @@ export default function Quizabc({onProgressChange1}) {
         )}
       </div>
     );
-  };
-  
-  
-  
-    
+        }
             
           
         
