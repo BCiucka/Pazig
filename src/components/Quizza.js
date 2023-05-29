@@ -93,6 +93,7 @@ const questionsza = [
     const [showScore, setShowScore] = useState(false);
     const [incorrectAnswers, setIncorrectAnswers] = useState([]);
     const [retakeMode, setRetakeMode] = useState(false);
+    const [buttonColor, setButtonColor] = useState("#fff");
     const resetButtonColors = () => {
       const buttons = document.querySelectorAll(".answer-button");
       buttons.forEach((button) => {
@@ -119,8 +120,10 @@ const handleAnswerSubmission = (event) => {
       onProgressChange2((progress2+1)/questionsza.length*100);
     }
     event.target.style.backgroundColor = "green";
+    setButtonColor("green");
   } else {
     event.target.style.backgroundColor = "red";
+    setButtonColor("red");
     setIncorrectAnswers([...incorrectAnswers, currentQuestion]);
   }
 
@@ -131,6 +134,11 @@ const handleAnswerSubmission = (event) => {
   } else {
     setShowScore(true);
   }
+  setTimeout(() => {
+    event.target.style.backgroundColor = "#385a63";
+    resetButtonColors();
+    setButtonColor("#fff");
+  }, 700); // Change color back to white after 2 seconds
 };
 
  const handleRetake = () => {

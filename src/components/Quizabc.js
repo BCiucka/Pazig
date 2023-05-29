@@ -57,6 +57,7 @@ export default function Quizabc({onProgressChange1}) {
   const [showScore, setShowScore] = useState(false);
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
   const [retakeMode, setRetakeMode] = useState(false);
+  const [buttonColor, setButtonColor] = useState("#fff");
   const resetButtonColors = () => {
     const buttons = document.querySelectorAll(".answer-button");
     buttons.forEach((button) => {
@@ -76,8 +77,10 @@ export default function Quizabc({onProgressChange1}) {
         onProgressChange1((progress1 + 1) / questionsabc.length * 100);
       }
       event.target.style.backgroundColor = "green";
+      setButtonColor("green");
     } else {
       event.target.style.backgroundColor = "red";
+      setButtonColor("red");
       setIncorrectAnswers([...incorrectAnswers, currentQuestion]);
     }
 
@@ -88,6 +91,10 @@ export default function Quizabc({onProgressChange1}) {
     } else {
       setShowScore(true);
     }
+    setTimeout(() => {
+      resetButtonColors();
+      setButtonColor("#fff");
+    }, 500); // Zmiana koloru na biały po 2 sekundach
   };
 
   const handleRetake = () => {
@@ -300,8 +307,3 @@ export default function Quizabc({onProgressChange1}) {
     </Card>
   );
 }
-
-  
-  
-
-  

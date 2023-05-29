@@ -120,7 +120,8 @@ const questions = [
     const [showScore, setShowScore] = useState(false);
     const [progress,setProgres]= useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = useState([]);
-     const [retakeMode, setRetakeMode] = useState(false);
+    const [retakeMode, setRetakeMode] = useState(false);
+    const [buttonColor, setButtonColor] = useState("#fff");
     const resetButtonColors = () => {
       const buttons = document.querySelectorAll(".answer-button");
       buttons.forEach((button) => {
@@ -128,22 +129,25 @@ const questions = [
       });
     };
     
+    
     //const shuffledQuestions = questions.sort(() => Math.random() - 0.5);
 //const questions = shuffledQuestions[currentQuestion];
-   const handleAnswerOptionClick = (selectedOption, event) => {
-    resetButtonColors();
-    const isCorrect = selectedOption === questions[currentQuestion].Answer;
-    if (  isCorrect) {
-      setScore(score + 1);
-      if (progress < questions.length - 1) {
-        setProgres(progress + 1);
-        onProgressChange((progress + 1) / questions.length * 100);
+    const handleAnswerOptionClick = (selectedOption, event) => {
+      resetButtonColors();
+      const isCorrect = selectedOption === questions[currentQuestion].Answer;
+      if (isCorrect) {
+        setScore(score + 1);
+        if (progress < questions.length - 1) {
+          setProgres(progress + 1);
+          onProgressChange((progress + 1) / questions.length * 100);
+        }
+        event.target.style.backgroundColor = "green";
+        setButtonColor("green");
+      } else {
+        event.target.style.backgroundColor = "red";
+        setButtonColor("red");
+        setIncorrectAnswers([...incorrectAnswers, currentQuestion]);
       }
-      event.target.style.backgroundColor = "green";
-    } else {
-      event.target.style.backgroundColor = "red";
-      setIncorrectAnswers([...incorrectAnswers, currentQuestion]);
-    }
 
 
       const nextQuestion = currentQuestion + 1;
@@ -152,7 +156,12 @@ const questions = [
       } else {
         setShowScore(true);
       }
+      setTimeout(() => {
+        resetButtonColors();
+        setButtonColor("#fff");
+      }, 500); // Zmiana koloru na biały po x sekundach
     };
+
 
     const handleRetake = () => {
       resetButtonColors(); // Reset button colors
