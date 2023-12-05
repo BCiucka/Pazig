@@ -1,5 +1,6 @@
 # Pazig - Aplikacja Języka Migowego
-[![Aplikacja](https://github.com/BCiucka/Pazig-AplikacjaJezykMigowy/raw/main/assets/128985044/8362956b-3d45-4020-bd1f-a72f2636c906.png)](https://youtu.be/06UXA0d5eFQ)
+[![Aplikacja](![obraz](https://github.com/BCiucka/Pazig-AplikacjaJezykMigowy/assets/128985044/9fa2bd97-3f8a-4f6a-9b6a-3a3310bef6b9)
+)](https://youtu.be/06UXA0d5eFQ)
 
 
 
